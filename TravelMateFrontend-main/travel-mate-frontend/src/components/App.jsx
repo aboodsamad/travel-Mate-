@@ -4,6 +4,7 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import Dashboard from "../pages/Dashboard.jsx";
 import DataTablePage from "../pages/DataTablePage.jsx";
+import Home from "../pages/Home.jsx";
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -11,10 +12,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<Dashboard data={data} setData={setData} />} />
-        <Route path="/data-table" element={<DataTablePage rows={data} />} />
-      </Routes>
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/dashboard" element={<Dashboard data={data} setData={setData} />} />
+  <Route path="/data-table" element={<DataTablePage rows={data} />} />
+</Routes>
       <Footer />
     </BrowserRouter>
   );
