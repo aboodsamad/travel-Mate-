@@ -35,8 +35,34 @@ export default function BarChart({ rows, field }) {
   };
 
   return (
-    <div style={{ background: "#fff", padding: 16, borderRadius: 10, boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
+  <div
+    style={{
+      background: "linear-gradient(135deg, #e3f2fd, #f5faff)",
+      padding: "32px",
+      borderRadius: "22px",
+      boxShadow: "0 12px 32px rgba(0,0,0,0.12)",
+      backdropFilter: "blur(8px)",
+      border: "1px solid rgba(255,255,255,0.6)",
+      marginTop: "10px",
+    }}
+  >
+    <h2
+      style={{
+        marginBottom: "20px",
+        color: "#01579b",
+        fontSize: "22px",
+        fontWeight: "700",
+        letterSpacing: "0.4px",
+        textAlign: "center",
+      }}
+    >
+      Top 10 by {field}
+    </h2>
+
+    <div style={{ width: "100%", height: "380px" }}>
       <Bar data={data} options={options} />
     </div>
-  );
+  </div>
+);
+
 }

@@ -1,9 +1,21 @@
 body {
   margin: 0;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  background-color: blanchedalmond;
-  color: #1a1a1a;
+  background: radial-gradient(
+      circle at top left,
+      rgba(224, 247, 250, 0.7),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(227, 242, 253, 0.7),
+      transparent 45%
+    ),
+    linear-gradient(135deg, #f5faff, #e3f2fd);
+  background-attachment: fixed;
+  font-family: "Inter", sans-serif;
+  color: #012a4a;
 }
+
 html, body {
   margin: 0;
   padding: 0;
