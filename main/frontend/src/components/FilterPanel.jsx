@@ -2,12 +2,12 @@ import CustomDropdown from "./CustomDropdown.jsx";
 
 export default function FilterPanel({
   data,
-  country,
-  setCountry,
+  city,
+  setCity,
   category,
   setCategory,
 }) {
-  const countries = Array.from(new Set(data.map((d) => d.City))).sort();
+  const countries = Array.from(new Set(data.map((d) => d.Country))).sort();
   const categories = Array.from(new Set(data.map((d) => d.Category))).sort();
 
   const panelStyle = {
@@ -25,8 +25,8 @@ export default function FilterPanel({
 
       <CustomDropdown
         label="City"
-        value={country}
-        onChange={setCountry}
+        value={city}
+        onChange={setCity}
         options={countries}
       />
 
