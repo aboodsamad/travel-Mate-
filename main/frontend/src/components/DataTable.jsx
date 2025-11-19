@@ -17,7 +17,7 @@ export default function DataTable({ rows }) {
   // Columns to show
   const allowedColumns = [
     "Location",
-    "Country",
+    "City",
     "Category",
     "Visitors",
     "Rating",

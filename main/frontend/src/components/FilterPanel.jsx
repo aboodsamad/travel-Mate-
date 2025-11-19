@@ -7,7 +7,7 @@ export default function FilterPanel({
   category,
   setCategory,
 }) {
-  const countries = Array.from(new Set(data.map((d) => d.Country))).sort();
+  const countries = Array.from(new Set(data.map((d) => d.City))).sort();
   const categories = Array.from(new Set(data.map((d) => d.Category))).sort();
 
   const panelStyle = {
@@ -24,7 +24,7 @@ export default function FilterPanel({
       <h3 style={{ color: "#01579b", marginBottom: "20px" }}>Filters</h3>
 
       <CustomDropdown
-        label="Country"
+        label="City"
         value={country}
         onChange={setCountry}
         options={countries}
