@@ -2,8 +2,8 @@ import CustomDropdown from "./CustomDropdown.jsx";
 
 export default function FilterPanel({
   data,
-  country,
-  setCountry,
+  city,
+  setCity,
   category,
   setCategory,
 }) {
@@ -24,9 +24,9 @@ export default function FilterPanel({
       <h3 style={{ color: "#01579b", marginBottom: "20px" }}>Filters</h3>
 
       <CustomDropdown
-        label="Country"
-        value={country}
-        onChange={setCountry}
+        label="City"
+        value={city}
+        onChange={setCity}
         options={countries}
       />
 

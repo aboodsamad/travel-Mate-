@@ -7,7 +7,7 @@ import BarChart from "../components/BarChart.jsx";
 
 export default function Dashboard({ data, setData }) {
   const [searchParams] = useSearchParams();
-  const [country, setCountry] = useState("");
+  const [city, setCountry] = useState("");
   const [category, setCategory] = useState("");
   const [statsField, setStatsField] = useState("Rating");
   const [chartField, setChartField] = useState("Visitors");
@@ -28,10 +28,10 @@ export default function Dashboard({ data, setData }) {
 
   const filtered = useMemo(() => {
     return data.filter((row) =>
-      (country ? row.Country === country : true) &&
+      (city ? row.Country === city : true) &&
       (category ? row.Category === category : true)
     );
-  }, [data, country, category]);
+  }, [data, city, category]);
 
   return (
     <div style={{ fontFamily: "Inter, sans-serif", padding: 20 }} className="app-container">
@@ -96,7 +96,7 @@ export default function Dashboard({ data, setData }) {
       <div style={{ display: "grid", gridTemplateColumns: "250px 1fr", gap: 20 }} className="dashboard-grid">
         <FilterPanel className="filters-panel"
           data={data}
-          country={country}
+          city={city}
           setCountry={setCountry}
           category={category}
           setCategory={setCategory}
