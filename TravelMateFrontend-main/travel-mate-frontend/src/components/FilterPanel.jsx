@@ -1,5 +1,6 @@
 import CustomDropdown from "./CustomDropdown.jsx";
-
+/*cd TravelMateFrontend-main
+cd travel-mate-frontend*/ 
 export default function FilterPanel({
   data,
   country,
@@ -24,7 +25,7 @@ export default function FilterPanel({
       <h3 style={{ color: "#01579b", marginBottom: "20px" }}>Filters</h3>
 
       <CustomDropdown
-        label="Country"
+        label="City"
         value={country}
         onChange={setCountry}
         options={countries}

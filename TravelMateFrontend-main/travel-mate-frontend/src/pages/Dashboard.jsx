@@ -37,19 +37,10 @@ export default function Dashboard({ data, setData }) {
       gap: "16px",
     }}
   >
-    <span style={{ fontSize: "38px" }}>🌍</span>
 
 
     <h1
-      style={{
-        margin: 0,
-        fontSize: "34px",
-        fontWeight: 800,
-        background: "linear-gradient(90deg, #014f86, #1b6fa8)",
-        WebkitBackgroundClip: "text",
-        color: "transparent",
-        letterSpacing: "0.6px",
-      }}
+      
     >
       Lebanon Tourism Dashboard
     </h1>
