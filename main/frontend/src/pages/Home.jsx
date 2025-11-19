@@ -15,22 +15,22 @@ export default function Home() {
     {
       name: "Beirut",
       description: "The vibrant capital city",
-      image: "https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&q=80"
+      image: "https://transferdesk.com/wp-content/uploads/2018/11/beirut-roundabout-min.jpg"
     },
     {
       name: "Byblos",
       description: "Ancient coastal treasure",
-      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80"
+      image: "https://t4.ftcdn.net/jpg/02/43/85/83/360_F_243858350_lt7uwZeNzOfYhi8kEZYk15yQOuYe88vk.jpg"
     },
     {
       name: "Baalbek",
       description: "Legendary Roman ruins",
-      image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80"
+      image: "https://upload.wikimedia.org/wikipedia/commons/9/90/Baalbeck_Temple.jpg"
     },
     {
       name: "Cedars",
       description: "Majestic mountain forests",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+      image: "https://kaleela.com/wp-content/uploads/2025/09/Whisk_e15d0f55a71912dbd904531dc43ab611dr.jpeg"
     }
   ];
 
@@ -54,6 +54,45 @@ export default function Home() {
       icon: "🎯",
       title: "Smart Search",
       description: "Filter by category, location, rating and more to find exactly what you need"
+    }
+  ];
+
+  const categories = [
+    {
+      name: "Restaurants",
+      icon: "🍽️",
+      count: "150+",
+      className: "category-restaurants"
+    },
+    {
+      name: "Cafes",
+      icon: "☕",
+      count: "80+",
+      className: "category-cafes"
+    },
+    {
+      name: "Hotels",
+      icon: "🏨",
+      count: "50+",
+      className: "category-hotels"
+    },
+    {
+      name: "Landmarks",
+      icon: "🏛️",
+      count: "40+",
+      className: "category-landmarks"
+    },
+    {
+      name: "Beaches",
+      icon: "🏖️",
+      count: "25+",
+      className: "category-beaches"
+    },
+    {
+      name: "Museums",
+      icon: "🎨",
+      count: "15+",
+      className: "category-museums"
     }
   ];
 
@@ -107,13 +146,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="scroll-indicator">
-          <div className="mouse">
-            <div className="wheel"></div>
-          </div>
-          <div className="scroll-text">Scroll to explore</div>
-        </div>
+
       </section>
 
       {/* Features Section */}
@@ -151,7 +184,7 @@ export default function Home() {
           <div className="destinations-grid">
             {destinations.map((dest, index) => (
               <Link 
-                to="/dashboard" 
+                to={`/dashboard?city=${dest.name}`} 
                 key={index} 
                 className="destination-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -180,36 +213,17 @@ export default function Home() {
           </div>
 
           <div className="categories-grid">
-            <div className="category-card category-restaurants">
-              <div className="category-icon">🍽️</div>
-              <h3>Restaurants</h3>
-              <p>150+ places</p>
-            </div>
-            <div className="category-card category-cafes">
-              <div className="category-icon">☕</div>
-              <h3>Cafes</h3>
-              <p>80+ places</p>
-            </div>
-            <div className="category-card category-hotels">
-              <div className="category-icon">🏨</div>
-              <h3>Hotels</h3>
-              <p>50+ places</p>
-            </div>
-            <div className="category-card category-landmarks">
-              <div className="category-icon">🏛️</div>
-              <h3>Landmarks</h3>
-              <p>40+ places</p>
-            </div>
-            <div className="category-card category-beaches">
-              <div className="category-icon">🏖️</div>
-              <h3>Beaches</h3>
-              <p>25+ places</p>
-            </div>
-            <div className="category-card category-museums">
-              <div className="category-icon">🎨</div>
-              <h3>Museums</h3>
-              <p>15+ places</p>
-            </div>
+            {categories.map((cat, index) => (
+              <Link
+                key={index}
+                to={`/dashboard?category=${cat.name}`}
+                className={`category-card ${cat.className}`}
+              >
+                <div className="category-icon">{cat.icon}</div>
+                <h3>{cat.name}</h3>
+                <p>{cat.count} places</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
