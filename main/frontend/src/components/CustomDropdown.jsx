@@ -14,16 +14,8 @@ export default function CustomDropdown({ label, value, onChange, options }) {
   }, []);
 
   return (
-    <div style={{ marginBottom: 20 }} ref={ref}>
-      <label
-        style={{
-          display: "block",
-          fontWeight: 600,
-          color: "#03446A",
-          marginBottom: 6,
-          fontSize: 14,
-        }}
-      >
+    <div ref={ref}>
+      <label className="filter-label">
         {label}
       </label>
 
@@ -31,20 +23,36 @@ export default function CustomDropdown({ label, value, onChange, options }) {
       <div
         onClick={() => setOpen(!open)}
         style={{
-          padding: "12px 14px",
+          padding: "12px 16px",
           background: "white",
           borderRadius: "12px",
-          border: "1px solid #cfd8dc",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+          border: "2px solid #e2e8f0",
           cursor: "pointer",
           userSelect: "none",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          transition: "all 0.2s ease",
+          fontWeight: 500,
+          color: value ? "#2d3748" : "#a0aec0",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = "#667eea";
+          e.currentTarget.style.boxShadow = "0 0 0 3px rgba(102, 126, 234, 0.1)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = "#e2e8f0";
+          e.currentTarget.style.boxShadow = "none";
         }}
       >
         <span>{value || "All"}</span>
-        <span style={{ transform: open ? "rotate(180deg)" : "none", transition: "0.2s" }}>
+        <span 
+          style={{ 
+            transform: open ? "rotate(180deg)" : "none", 
+            transition: "transform 0.2s ease",
+            fontSize: "12px"
+          }}
+        >
           ▼
         </span>
       </div>
@@ -56,15 +64,28 @@ export default function CustomDropdown({ label, value, onChange, options }) {
             marginTop: 8,
             background: "white",
             borderRadius: "12px",
-            border: "1px solid #cfd8dc",
-            boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
-            maxHeight: "200px",
+            border: "1px solid #e2e8f0",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.12)",
+            maxHeight: "220px",
             overflowY: "auto",
             animation: "fadeIn 0.2s ease-out",
             zIndex: 10,
             position: "relative",
           }}
         >
+          <style>{`
+            @keyframes fadeIn {
+              from {
+                opacity: 0;
+                transform: translateY(-10px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+          `}</style>
+          
           {/* ALL option */}
           <div
             onClick={() => {
@@ -72,11 +93,25 @@ export default function CustomDropdown({ label, value, onChange, options }) {
               setOpen(false);
             }}
             style={{
-              padding: "12px",
+              padding: "12px 16px",
               cursor: "pointer",
-              borderBottom: "1px solid #f1f1f1",
-              fontWeight: value === "" ? 700 : 400,
-              background: value === "" ? "#e3f2fd" : "white",
+              borderBottom: "1px solid #f7fafc",
+              fontWeight: value === "" ? 600 : 400,
+              background: value === "" ? "linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))" : "white",
+              color: value === "" ? "#667eea" : "#4a5568",
+              transition: "all 0.15s ease",
+            }}
+            onMouseEnter={(e) => {
+              if (value !== "") {
+                e.target.style.background = "#f7fafc";
+                e.target.style.paddingLeft = "20px";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (value !== "") {
+                e.target.style.background = "white";
+                e.target.style.paddingLeft = "16px";
+              }
             }}
           >
             All
@@ -91,15 +126,25 @@ export default function CustomDropdown({ label, value, onChange, options }) {
                 setOpen(false);
               }}
               style={{
-                padding: "12px",
+                padding: "12px 16px",
                 cursor: "pointer",
-                transition: "0.2s",
-                background: value === opt ? "#e3f2fd" : "white",
+                transition: "all 0.15s ease",
+                background: value === opt ? "linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1))" : "white",
+                fontWeight: value === opt ? 600 : 400,
+                color: value === opt ? "#667eea" : "#4a5568",
               }}
-              onMouseEnter={(e) => (e.target.style.background = "#f5faff")}
-              onMouseLeave={(e) =>
-                (e.target.style.background = value === opt ? "#e3f2fd" : "white")
-              }
+              onMouseEnter={(e) => {
+                if (value !== opt) {
+                  e.target.style.background = "#f7fafc";
+                  e.target.style.paddingLeft = "20px";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (value !== opt) {
+                  e.target.style.background = "white";
+                  e.target.style.paddingLeft = "16px";
+                }
+              }}
             >
               {opt}
             </div>
@@ -109,4 +154,3 @@ export default function CustomDropdown({ label, value, onChange, options }) {
     </div>
   );
 }
-

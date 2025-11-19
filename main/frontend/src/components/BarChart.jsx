@@ -12,7 +12,17 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function BarChart({ rows, field }) {
-  if (!rows.length) return <div>No data available for chart.</div>;
+  if (!rows.length) {
+    return (
+      <div className="empty-state">
+        <div className="empty-state-icon">📊</div>
+        <div className="empty-state-title">No Data Available</div>
+        <div className="empty-state-text">
+          Try adjusting your filters to see more results
+        </div>
+      </div>
+    );
+  }
 
   const top10 = rows.slice(0, 10);
   const labels = top10.map((r) => r.Location);
@@ -24,45 +34,73 @@ export default function BarChart({ rows, field }) {
       {
         label: field,
         data: values,
-        backgroundColor: "rgba(37, 99, 235, 0.6)"
+        backgroundColor: 'rgba(102, 126, 234, 0.8)',
+        borderColor: 'rgba(102, 126, 234, 1)',
+        borderWidth: 2,
+        borderRadius: 8,
+        hoverBackgroundColor: 'rgba(118, 75, 162, 0.9)',
       }
     ]
   };
 
   const options = {
     responsive: true,
-    plugins: { legend: { position: "top" }, title: { display: true, text: `Top 10 by ${field}` } }
+    maintainAspectRatio: false,
+    plugins: { 
+      legend: { 
+        display: false
+      }, 
+      title: { 
+        display: false
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        padding: 12,
+        titleFont: {
+          size: 14,
+          weight: 'bold'
+        },
+        bodyFont: {
+          size: 13
+        },
+        cornerRadius: 8,
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: 'rgba(0, 0, 0, 0.05)',
+        },
+        ticks: {
+          font: {
+            size: 12,
+            weight: '500'
+          }
+        }
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          font: {
+            size: 12,
+            weight: '500'
+          },
+          maxRotation: 45,
+          minRotation: 45
+        }
+      }
+    }
   };
 
   return (
-  <div
-    style={{
-      background: "linear-gradient(135deg, #e3f2fd, #f5faff)",
-      padding: "32px",
-      borderRadius: "22px",
-      boxShadow: "0 12px 32px rgba(0,0,0,0.12)",
-      backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.6)",
-      marginTop: "10px",
-    }}
-  >
-    <h2
-      style={{
-        marginBottom: "20px",
-        color: "#01579b",
-        fontSize: "22px",
-        fontWeight: "700",
-        letterSpacing: "0.4px",
-        textAlign: "center",
-      }}
-    >
-      Top 10 by {field}
-    </h2>
-
-    <div style={{ width: "100%", height: "380px" }}>
-      <Bar data={data} options={options} />
+    <div className="chart-container">
+      <h2 className="chart-title">Top 10 Places by {field}</h2>
+      <div style={{ width: "100%", height: "400px" }}>
+        <Bar data={data} options={options} />
+      </div>
     </div>
-  </div>
-);
-
+  );
 }

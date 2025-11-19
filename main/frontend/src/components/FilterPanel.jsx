@@ -2,40 +2,52 @@ import CustomDropdown from "./CustomDropdown.jsx";
 
 export default function FilterPanel({
   data,
-  city,
-  setCity,
+  country,
+  setCountry,
   category,
   setCategory,
+  onClearFilters,
 }) {
-  const countries = Array.from(new Set(data.map((d) => d.Country))).sort();
+  const countries = Array.from(new Set(data.map((d) => d.City))).sort();
   const categories = Array.from(new Set(data.map((d) => d.Category))).sort();
 
-  const panelStyle = {
-    background: "linear-gradient(135deg, #e0f7fa, #e3f2fd)",
-    padding: "24px",
-    borderRadius: "20px",
-    boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
-    backdropFilter: "blur(8px)",
-    border: "1px solid rgba(255,255,255,0.4)",
-  };
+  const hasActiveFilters = country || category;
 
   return (
-    <div style={panelStyle}>
-      <h3 style={{ color: "#01579b", marginBottom: "20px" }}>Filters</h3>
+    <div className="filter-panel">
+      <h3>Filters</h3>
 
-      <CustomDropdown
-        label="City"
-        value={city}
-        onChange={setCity}
-        options={countries}
-      />
+      <div className="filter-group">
+        <CustomDropdown
+          label="City"
+          value={country}
+          onChange={setCountry}
+          options={countries}
+        />
+      </div>
 
-      <CustomDropdown
-        label="Category"
-        value={category}
-        onChange={setCategory}
-        options={categories}
-      />
+      <div className="filter-group">
+        <CustomDropdown
+          label="Category"
+          value={category}
+          onChange={setCategory}
+          options={categories}
+        />
+      </div>
+
+      {hasActiveFilters && (
+        <>
+          <button className="clear-filters-btn" onClick={onClearFilters}>
+            Clear All Filters
+          </button>
+          
+          <div className="active-filters">
+            <div className="active-filters-title">Active Filters:</div>
+            {country && <span className="filter-badge">📍 {country}</span>}
+            {category && <span className="filter-badge">🏷️ {category}</span>}
+          </div>
+        </>
+      )}
     </div>
   );
 }
